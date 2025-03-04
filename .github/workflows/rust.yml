@@ -26,7 +26,7 @@ jobs:
                       # You could test for all features too, however that might require a lot of conditional compilation annotations.
                       # Thus we only test for the default features by default.
                       # Since we build with trunk the entrypoint will also be the "src/main.rs" file.
-                      flags: '--bin ${{ github.event.repository.name }}'
+                      flags: '--bin lab2'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -79,7 +79,7 @@ jobs:
             - name: Download and install Trunk binary
               run: wget -qO- https://github.com/thedodd/trunk/releases/latest/download/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
             - name: Build
-              run: ./trunk build
+              run: RUSTFLAGS='--cfg getrandom_backend="wasm_js"' ./trunk build
 
     build:
         runs-on: ${{ matrix.os }}
@@ -149,7 +149,7 @@ jobs:
               run: cross build --verbose --release --target=${{ matrix.TARGET }}
 
             - name: Rename
-              run: cp target/${{ matrix.TARGET }}/release/${{ github.event.repository.name }}${{ matrix.EXTENSION }} ${{ github.event.repository.name }}-${{ matrix.TARGET }}${{ matrix.EXTENSION }}
+              run: cp target/${{ matrix.TARGET }}/release/lab2${{ matrix.EXTENSION }} ${{ github.event.repository.name }}-${{ matrix.TARGET }}${{ matrix.EXTENSION }}
 
             - uses: actions/upload-artifact@master
               with:
