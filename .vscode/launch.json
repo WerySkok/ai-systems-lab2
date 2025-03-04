@@ -1,0 +1,43 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'lab2'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=lab2",
+                    "--package=lab2"
+                ],
+                "filter": {
+                    "name": "lab2",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Run release executable 'lab2'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=lab2",
+                    "--package=lab2",
+                    "--release"
+                ],
+                "filter": {
+                    "name": "lab2",
+                    "kind": "bin"
+                }
+            }
+        }
+    ]
+}
