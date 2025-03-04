@@ -26,7 +26,8 @@ jobs:
                       # You could test for all features too, however that might require a lot of conditional compilation annotations.
                       # Thus we only test for the default features by default.
                       # Since we build with trunk the entrypoint will also be the "src/main.rs" file.
-                      flags: '--bin lab2 --cfg getrandom_backend="wasm_js"'
+                      flags: '--bin lab2'
+                      env: RUSTFLAGS='--cfg getrandom_backend="wasm_js"'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -34,7 +35,7 @@ jobs:
               with:
                   targets: ${{matrix.TARGET}}
             - uses: Swatinem/rust-cache@v2
-            - run: cargo check ${{matrix.flags}} --target ${{matrix.TARGET}}
+            - run: ${{matrix.env}} cargo check ${{matrix.flags}} --target ${{matrix.TARGET}}
 
     test:
         name: Test Suite
