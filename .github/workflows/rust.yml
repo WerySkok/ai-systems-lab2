@@ -93,20 +93,6 @@ jobs:
                       # https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job#standard-github-hosted-runners-for-public-repositories
                       TARGET: aarch64-apple-darwin
 
-                    - os: macos-latest
-                      TARGET: x86_64-apple-darwin
-                      # even though the runner uses arm64, MacOS on arm64 seems to support building for amd64.
-                      # which makes sense, would be bad for devs otherwise.
-                      cross: false
-
-                    - os: ubuntu-latest
-                      TARGET: aarch64-unknown-linux-gnu
-                      cross: true
-
-                    - os: ubuntu-latest
-                      TARGET: armv7-unknown-linux-gnueabihf
-                      cross: true
-
                     - os: ubuntu-latest
                       TARGET: x86_64-unknown-linux-gnu
 
