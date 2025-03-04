@@ -35,6 +35,8 @@ jobs:
           override: true
       - uses: actions-rs/cargo@v1
         with:
+          env:
+            RUSTFLAGS: '--cfg getrandom_backend="wasm_js"'
           command: check
           args: --all-features --lib --target wasm32-unknown-unknown
 
